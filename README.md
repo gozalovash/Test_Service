@@ -1,4 +1,4 @@
-# Network Programming
+#  Text Service application using TCP
 
 This project is designed to boost the network programming knowledge by solving different labs
 
@@ -13,30 +13,40 @@ This project is designed to boost the network programming knowledge by solving d
 ```python
 import socket
 import argparse
-from datetime import datetime
-import random
+import json
+import os
 ```
 ## Content
-- lab1_spotify.py- first lab
-
+- Server.py - Server part of programm, which performs operations, requested by client
+- Client.py - Client part, send request to Server to perform specific operation and necessary files
+- my_source_file  - source file with the original text
+- my_key - the key for encoding/decoding
+- my_json_file.json - dictionary with values for changing the text
+- response - the response from the server is written here
  #### Scenario
- > The Spotify regional server warehouse provides music streaming services for the billions of clients 24/7. Spotify servers responding time are depend on clients load number. Because of this reason, the clients must wait for responding with regarding the next time schedule: 
-- First interval: Between 12:00 – 17:00 the maximum wait time must be 2 seconds.
-- Second Interval: After the 17:00 till the 23:59 the maximum wait time must be for 4 seconds. 
-- Third Interval: After the 23:59 till the 12:00 of the next day the waiting time must be 1 second 
+ > You as a software developer must create the client-server-based console app “text_service”.
+With the next abilities:
+>Change text: The sender sends the text file to the server and the json file, in respond the server
+must read the json file and swap the words from the text according the json file.
+>Encode/Decode text: The sender sends the text file and the key (another text) on the respond
+the server must XOR the text message with the key (One Time Pad cipher) and return it to the
+client. The decoding process happens in the same way where instead of the text message the
+client sends 
 
-> The exponential backoff of these intervals must be increased by the next factors: For the first and third intervals: doubles each iteration For the second interval: triples on each iteration 
    #### Task
- > Create the Client-Server based UDP basic console application with simple test messaging from the client to the server but with the backoff strategies based on the scenario above.
+ >Create console based app with the options (modes) with to swap and encode/decode text
+python3 text_service --mode chance_text my_source_file.txt my_json_file.json
+python3 text_service --mode encode_decode my_source_file.txt my_key.txt
+
 
 ## Usage
 
-To run the program as server:
+First run the program as server:
 
 ```
-python lab1_spotify.py server [HOST] [PORT]
+python Server.py
 ```
-To run as client:
+Then as a client, providing necessary arguments:
 
 ```
 python lab1_spotify.py client [HOST] [PORT]
