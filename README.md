@@ -26,17 +26,17 @@ import os
  #### Scenario
  > You as a software developer must create the client-server-based console app “text_service”.
 With the next abilities:
->Change text: The sender sends the text file to the server and the json file, in respond the server
+- Change text: The sender sends the text file to the server and the json file, in respond the server
 must read the json file and swap the words from the text according the json file.
->Encode/Decode text: The sender sends the text file and the key (another text) on the respond
+- Encode/Decode text: The sender sends the text file and the key (another text) on the respond
 the server must XOR the text message with the key (One Time Pad cipher) and return it to the
 client. The decoding process happens in the same way where instead of the text message the
 client sends 
 
    #### Task
  >Create console based app with the options (modes) with to swap and encode/decode text
-python3 text_service --mode chance_text my_source_file.txt my_json_file.json
-python3 text_service --mode encode_decode my_source_file.txt my_key.txt
+python3 text_service --mode chance_text my_source_file my_json_file.json
+python3 text_service --mode encode_decode my_source_file my_key
 
 
 ## Usage
@@ -49,7 +49,11 @@ python Server.py
 Then as a client, providing necessary arguments:
 
 ```
-python lab1_spotify.py client [HOST] [PORT]
+python Client.py [--mode MODE] {source_file} {key_file}
+```
+Example:
+```
+python Client.py --mode change_text my_source_file my_json_file.json
 ```
 
 
